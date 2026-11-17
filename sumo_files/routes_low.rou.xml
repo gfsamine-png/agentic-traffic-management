@@ -1,0 +1,15 @@
+<routes>
+  <vType id="car" accel="2.6" decel="4.5" length="5" maxSpeed="13.89" sigma="0.5"/>
+  <flow id="N_straight" type="car" from="N2C" to="C2S" begin="0" end="3600" vehsPerHour="180" departLane="best" departSpeed="max" />
+  <flow id="N_left" type="car" from="N2C" to="C2E" begin="0" end="3600" vehsPerHour="60" departLane="best" departSpeed="max" />
+  <flow id="N_right" type="car" from="N2C" to="C2W" begin="0" end="3600" vehsPerHour="60" departLane="best" departSpeed="max" />
+  <flow id="S_straight" type="car" from="S2C" to="C2N" begin="0" end="3600" vehsPerHour="180" departLane="best" departSpeed="max" />
+  <flow id="S_left" type="car" from="S2C" to="C2W" begin="0" end="3600" vehsPerHour="60" departLane="best" departSpeed="max" />
+  <flow id="S_right" type="car" from="S2C" to="C2E" begin="0" end="3600" vehsPerHour="60" departLane="best" departSpeed="max" />
+  <flow id="E_straight" type="car" from="E2C" to="C2W" begin="0" end="3600" vehsPerHour="180" departLane="best" departSpeed="max" />
+  <flow id="E_left" type="car" from="E2C" to="C2S" begin="0" end="3600" vehsPerHour="60" departLane="best" departSpeed="max" />
+  <flow id="E_right" type="car" from="E2C" to="C2N" begin="0" end="3600" vehsPerHour="60" departLane="best" departSpeed="max" />
+  <flow id="W_straight" type="car" from="W2C" to="C2E" begin="0" end="3600" vehsPerHour="180" departLane="best" departSpeed="max" />
+  <flow id="W_left" type="car" from="W2C" to="C2N" begin="0" end="3600" vehsPerHour="60" departLane="best" departSpeed="max" />
+  <flow id="W_right" type="car" from="W2C" to="C2S" begin="0" end="3600" vehsPerHour="60" departLane="best" departSpeed="max" />
+</routes>
