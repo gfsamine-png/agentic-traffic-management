@@ -1,0 +1,2 @@
+run_id,controller,scenario,seed,timestamp,requested_by,reason,vehicles_entered,throughput,unfinished,pending_end,served_pct,avg_wait_s,avg_time_loss_s,stops_per_vehicle,avg_queue,max_queue,avg_queue_N,avg_queue_S,avg_queue_E,avg_queue_W
+exp_ppo_high_s6,ppo,high,6,2026-11-19T21:48:08,coordinator,Confirm PPO robustness on a new seed,3013,2893,120,587,80.4,48.33,104.79,6.86,9.84,25,2.45,3.03,16.99,16.88
