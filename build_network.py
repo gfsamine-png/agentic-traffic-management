@@ -1,8 +1,13 @@
-"""Phase 1 - Build a 4-way intersection (N, S, E, W) with SUMO's netconvert."""
+"""Phase 1/3 - Build the 4-way intersection with SUMO's netconvert.
+
+Creates two networks with the SAME geometry:
+  intersection.net.xml           fixed-time light (our baseline, also used by PPO)
+  intersection_actuated.net.xml  SUMO's actuated light (second, stronger baseline)
+"""
 import subprocess
 from pathlib import Path
 
-OUT = Path(__file__).parent / "sumo_files"
+OUT = Path(__file__).resolve().parent / "sumo_files"
 OUT.mkdir(exist_ok=True)
 ARM = 200  # length of each road in metres
 
@@ -25,12 +30,14 @@ def edges():
 (OUT / "nodes.nod.xml").write_text(NODES)
 (OUT / "edges.edg.xml").write_text(edges())
 
-subprocess.run([
-    "netconvert",
-    "--node-files", str(OUT / "nodes.nod.xml"),
-    "--edge-files", str(OUT / "edges.edg.xml"),
-    "--output-file", str(OUT / "intersection.net.xml"),
-    "--tls.default-type", "static",
-    "--no-turnarounds", "true",
-], check=True)
-print("Network written to", OUT / "intersection.net.xml")
+for tls_type, name in [("static", "intersection.net.xml"),
+                       ("actuated", "intersection_actuated.net.xml")]:
+    subprocess.run([
+        "netconvert",
+        "--node-files", str(OUT / "nodes.nod.xml"),
+        "--edge-files", str(OUT / "edges.edg.xml"),
+        "--output-file", str(OUT / name),
+        "--tls.default-type", tls_type,
+        "--no-turnarounds", "true",
+    ], check=True)
+    print("Network written to", OUT / name)
