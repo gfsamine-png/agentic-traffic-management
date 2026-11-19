@@ -22,13 +22,24 @@ def load_runs():
 
 
 def load_experiments():
-    return pd.read_csv(EXPERIMENTS_CSV) if EXPERIMENTS_CSV.exists() else pd.DataFrame()
+    if not EXPERIMENTS_CSV.exists():
+        return pd.DataFrame()
+    try:
+        return pd.read_csv(EXPERIMENTS_CSV)
+    except Exception:          # file written with an older column layout: treat as empty
+        return pd.DataFrame()
 
 
 def append_experiment(row: dict):
-    df = pd.DataFrame([row])
+    new = pd.DataFrame([row])
     RESULTS_DIR.mkdir(exist_ok=True)
-    df.to_csv(EXPERIMENTS_CSV, mode="a", header=not EXPERIMENTS_CSV.exists(), index=False)
+    if EXPERIMENTS_CSV.exists():
+        try:
+            old = pd.read_csv(EXPERIMENTS_CSV)
+        except Exception:                      # corrupted by an older column layout: start over
+            old = pd.DataFrame()
+        new = pd.concat([old, new], ignore_index=True)   # union of columns, never misaligned
+    new.to_csv(EXPERIMENTS_CSV, index=False)
 
 
 def scenario_summary(scenario: str) -> dict:

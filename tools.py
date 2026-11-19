@@ -60,7 +60,8 @@ def compare_runs(run_id_a: str, run_id_b: str) -> dict:
 
 @tool
 def run_experiment(controller: Controller, scenario: Scenario, seed: int, reason: str) -> dict:
-    """Run ONE extra simulation (one hour of traffic) and log it. Allowed: controller in
+    """Run ONE extra simulation (one hour of traffic) and log it. ALL FOUR arguments are
+    required: controller, scenario, seed and reason. Allowed: controller in
     fixed_time/actuated/ppo, scenario in low/medium/high, seed an integer from 6 to 50.
     At most 5 new experiments per session; repeating an experiment returns the cached
     result. 'reason' must say why the experiment is needed. Requests outside these limits
